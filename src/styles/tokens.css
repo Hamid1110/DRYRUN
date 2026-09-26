@@ -1,0 +1,174 @@
+/* ------------------------------------------------------------------
+   DryRun design tokens
+   Paper (lessons) + slate board (code, console) + C++ blue accent.
+   ------------------------------------------------------------------ */
+
+:root {
+  --font-display: 'Lexend', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, 'Courier New', monospace;
+
+  --bg: #f2f4f3;
+  --surface: #ffffff;
+  --surface-2: #f7f9f8;
+  --sunken: #e9eeec;
+  --line: #d8e0dc;
+  --line-2: #c3cec9;
+  --ink: #13201c;
+  --ink-2: #43524d;
+  --ink-3: #6f7e78;
+
+  --accent: #00599c;
+  --accent-hover: #004a82;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3edf7;
+  --accent-line: #b5cde5;
+
+  --mark: #f2c94c;
+  --mark-soft: #fbf1cf;
+  --mark-ink: #5b4507;
+
+  --ok: #1d7f52;
+  --ok-soft: #e1f3e9;
+  --ok-line: #a6d8bc;
+  --bad: #bf3b35;
+  --bad-soft: #fbe8e6;
+  --bad-line: #ecb3ae;
+  --warn: #9a6210;
+  --warn-soft: #fcf1dc;
+  --gold: #a87a0e;
+  --gold-soft: #fdf6e1;
+  --gold-line: #e2bf5b;
+  --gold-2: #f4d77c;
+  --warn-line: #e9c98b;
+
+  /* the board: code, console, memory header */
+  --board: #18211f;
+  --board-2: #1f2a27;
+  --board-3: #293531;
+  --board-line: #34443e;
+  --chalk: #e6ece8;
+  --chalk-2: #a6b5af;
+  --chalk-3: #74847e;
+  --exec: #4fd89b;
+  --next: #f5a55c;
+  --exec-bg: rgba(79, 216, 155, 0.13);
+  --next-bg: rgba(245, 165, 92, 0.09);
+  --focus-bg: rgba(242, 201, 76, 0.22);
+
+  --sx-kw: #f3a0bb;
+  --sx-ty: #7fd0e4;
+  --sx-str: #eed28a;
+  --sx-esc: #ff9a5c;
+  --sx-num: #c7aaf5;
+  --sx-com: #70827b;
+  --sx-pp: #9ed69a;
+  --sx-io: #8ad6ba;
+  --sx-fn: #eee3b2;
+  --sx-op: #d6dfdb;
+
+  --shadow-1: 0 1px 2px rgba(19, 32, 28, 0.06), 0 1px 1px rgba(19, 32, 28, 0.04);
+  --shadow-2: 0 6px 24px rgba(19, 32, 28, 0.1), 0 2px 6px rgba(19, 32, 28, 0.06);
+  --shadow-3: 0 24px 60px rgba(9, 16, 14, 0.28);
+
+  --r-sm: 6px;
+  --r: 10px;
+  --r-lg: 14px;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.84rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+  --fs-3xl: 2.9rem;
+
+  --sidebar-w: 288px;
+  --topbar-h: 56px;
+  --gutter: clamp(16px, 3vw, 36px);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0e1513;
+    --surface: #151e1c;
+    --surface-2: #19231f;
+    --sunken: #101816;
+    --line: #26332f;
+    --line-2: #34443e;
+    --ink: #e3eae7;
+    --ink-2: #a6b5af;
+    --ink-3: #75857f;
+    --accent: #5ea9ea;
+    --accent-hover: #82bdf0;
+    --accent-ink: #061727;
+    --accent-soft: #13283a;
+    --accent-line: #24476a;
+    --mark-soft: #3a3118;
+    --mark-ink: #f2d77e;
+    --ok: #55cb8f;
+    --ok-soft: #10281c;
+    --ok-line: #1f4c35;
+    --bad: #f07d74;
+    --bad-soft: #2d1614;
+    --bad-line: #5a2a26;
+    --warn: #e7b45a;
+    --warn-soft: #2b2211;
+  --gold: #f0c75a;
+  --gold-soft: #2a2310;
+  --gold-line: #8a6b1f;
+  --gold-2: #5c4814;
+    --gold: #f0c75a;
+    --gold-soft: #2a2310;
+    --gold-line: #8a6b1f;
+    --gold-2: #5c4814;
+    --warn-line: #5a4520;
+    --board: #0b1210;
+    --board-2: #111a17;
+    --board-3: #19241f;
+    --board-line: #26332e;
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-2: 0 8px 28px rgba(0, 0, 0, 0.45);
+    --shadow-3: 0 24px 60px rgba(0, 0, 0, 0.6);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #0e1513;
+  --surface: #151e1c;
+  --surface-2: #19231f;
+  --sunken: #101816;
+  --line: #26332f;
+  --line-2: #34443e;
+  --ink: #e3eae7;
+  --ink-2: #a6b5af;
+  --ink-3: #75857f;
+  --accent: #5ea9ea;
+  --accent-hover: #82bdf0;
+  --accent-ink: #061727;
+  --accent-soft: #13283a;
+  --accent-line: #24476a;
+  --mark-soft: #3a3118;
+  --mark-ink: #f2d77e;
+  --ok: #55cb8f;
+  --ok-soft: #10281c;
+  --ok-line: #1f4c35;
+  --bad: #f07d74;
+  --bad-soft: #2d1614;
+  --bad-line: #5a2a26;
+  --warn: #e7b45a;
+  --warn-soft: #2b2211;
+  --warn-line: #5a4520;
+  --board: #0b1210;
+  --board-2: #111a17;
+  --board-3: #19241f;
+  --board-line: #26332e;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --shadow-3: 0 24px 60px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
