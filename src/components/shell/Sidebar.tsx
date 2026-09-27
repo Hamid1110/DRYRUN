@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { COURSES, COURSE_TRACKS, LEVELS, findLevel, isUnlocked, type CourseTrack } from '@/content/course';
 import { Link, requestStage, useNav } from '@/lib/router';
 import { resetAll, setUnlockAll, useProgress } from '@/lib/progress';
@@ -55,12 +55,22 @@ export function Sidebar() {
   const activeLevelRef = activeId ? findLevel(activeId) : undefined;
   const activeUnit = activeLevelRef?.unit.id;
 
-  // Auto-sync active track if navigated to a level in a different course
+  const lastActiveIdRef = useRef<string | null>(activeId);
+
+  // Auto-sync active track ONLY when the user navigates to a new level
   useEffect(() => {
-    if (activeLevelRef && activeLevelRef.track !== activeTrack) {
-      setActiveTrack(activeLevelRef.track);
+    if (activeId && activeId !== lastActiveIdRef.current) {
+      lastActiveIdRef.current = activeId;
+      if (activeLevelRef && activeLevelRef.track !== activeTrack) {
+        setActiveTrack(activeLevelRef.track);
+      }
+    } else if (!activeId) {
+      lastActiveIdRef.current = null;
     }
-  }, [activeLevelRef, activeTrack, setActiveTrack]);
+  }, [activeId, activeLevelRef, activeTrack, setActiveTrack]);
+
+  const isCurrentTrackLevel = activeLevelRef?.track === activeTrack;
+  const currentTrackActiveUnit = isCurrentTrackLevel ? activeUnit : undefined;
 
   const course = COURSES[activeTrack] ?? COURSES.pf;
   const courseLevels = LEVELS.filter((l) => l.track === activeTrack);
@@ -69,7 +79,8 @@ export function Sidebar() {
 
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const [confirmReset, setConfirmReset] = useState(false);
-  const isOpen = (id: string, idx: number) => open[id] ?? (id === activeUnit || (idx === 0 && !activeUnit));
+  const isOpen = (id: string, idx: number) =>
+    open[id] ?? (id === currentTrackActiveUnit || (idx === 0 && !currentTrackActiveUnit));
 
   const closePanel = () => {
     if (window.matchMedia('(max-width: 900px)').matches) setDrawer(false);
