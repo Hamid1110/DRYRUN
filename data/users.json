@@ -1,0 +1,82 @@
+[
+  {
+    "id": "seed_fast_1",
+    "name": "Hamza Tariq",
+    "institute": "FAST NUCES Islamabad",
+    "xp": 680,
+    "streakDays": 6,
+    "levelsDone": 14,
+    "lastActiveAt": 1790602510138,
+    "firstSeenAt": 1789997830138
+  },
+  {
+    "id": "seed_nust_2",
+    "name": "Ayesha Noor",
+    "institute": "NUST SEECS",
+    "xp": 590,
+    "streakDays": 5,
+    "levelsDone": 12,
+    "lastActiveAt": 1790602570138,
+    "firstSeenAt": 1790084230138
+  },
+  {
+    "id": "seed_giki_3",
+    "name": "Bilal Ahmed",
+    "institute": "GIKI Swabi",
+    "xp": 450,
+    "streakDays": 4,
+    "levelsDone": 9,
+    "lastActiveAt": 1790601790138,
+    "firstSeenAt": 1790170630138
+  },
+  {
+    "id": "seed_comsats_4",
+    "name": "Zainab Fatima",
+    "institute": "COMSATS Lahore",
+    "xp": 380,
+    "streakDays": 3,
+    "levelsDone": 8,
+    "lastActiveAt": 1790600110138,
+    "firstSeenAt": 1790257030138
+  },
+  {
+    "id": "seed_uet_5",
+    "name": "Usman Ali",
+    "institute": "UET Taxila",
+    "xp": 320,
+    "streakDays": 3,
+    "levelsDone": 7,
+    "lastActiveAt": 1790591830138,
+    "firstSeenAt": 1790343430138
+  },
+  {
+    "id": "seed_fast_6",
+    "name": "Saad Malik",
+    "institute": "FAST NUCES Lahore",
+    "xp": 260,
+    "streakDays": 2,
+    "levelsDone": 5,
+    "lastActiveAt": 1790584630138,
+    "firstSeenAt": 1790343430138
+  },
+  {
+    "id": "usr_mulecuyg_ze4lzj",
+    "name": "Hmaid Nadeem",
+    "institute": "Fast",
+    "xp": 0,
+    "streakDays": 1,
+    "levelsDone": 0,
+    "lastActiveAt": 1790613850399,
+    "firstSeenAt": 1790608984538
+  },
+  {
+    "id": "test_learner_1",
+    "name": "Hamid",
+    "institute": "FAST NUCES",
+    "xp": 120,
+    "streakDays": 2,
+    "levelsDone": 4,
+    "lastActiveAt": 1790609555314,
+    "firstSeenAt": 1790609555314
+  }
+]

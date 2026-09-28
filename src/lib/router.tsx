@@ -5,7 +5,7 @@ import { createContext, useContext, type AnchorHTMLAttributes, type MouseEvent, 
 // A tiny navigation abstraction so the same UI runs inside Next.js (real URLs)
 // and inside the single-file preview build (hash URLs).
 
-export type Route = { name: 'home' } | { name: 'level'; id: string; stage?: string } | { name: 'playground' };
+export type Route = { name: 'home' } | { name: 'level'; id: string; stage?: string } | { name: 'playground' } | { name: 'users' };
 
 export interface Nav {
   route: Route;
@@ -24,6 +24,7 @@ export function useNav(): Nav {
 export function pathOf(r: Route): string {
   if (r.name === 'home') return '/';
   if (r.name === 'playground') return '/playground';
+  if (r.name === 'users') return '/users';
   return `/learn/${r.id}`;
 }
 
@@ -31,6 +32,7 @@ export function routeOfPath(path: string): Route {
   const m = /^\/learn\/([\w-]+)/.exec(path);
   if (m) return { name: 'level', id: m[1] };
   if (path.startsWith('/playground')) return { name: 'playground' };
+  if (path.startsWith('/users') || path.startsWith('/community')) return { name: 'users' };
   return { name: 'home' };
 }
 

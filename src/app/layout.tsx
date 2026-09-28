@@ -6,6 +6,7 @@ import '../styles/home.css';
 import '../styles/level.css';
 import '../styles/viz.css';
 import '../styles/practice.css';
+import '../styles/users.css';
 import { NextRoot } from '@/components/shell/NextRoot';
 import { FONT_LINKS, PREFS_BOOT_SCRIPT } from '@/lib/boot';
 

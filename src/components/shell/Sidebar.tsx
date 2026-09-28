@@ -164,6 +164,13 @@ export function Sidebar() {
           <kbd>Ctrl K</kbd>
         </button>
 
+        {/* Learner Community & Leaderboard Link */}
+        <Link to={{ name: 'users' }} className="sb-community-link" title="See who is online and active learners">
+          <span className="live-dot-mini" />
+          <Icon name="users" size={15} />
+          <span>Live Learners & Leaderboard</span>
+        </Link>
+
         {/* 3 Main Course Tracks */}
         <div className="sb-track-selector">
           <div className="sb-track-tabs">

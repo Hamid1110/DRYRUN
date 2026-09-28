@@ -12,6 +12,8 @@ import { createPortal } from 'react-dom';
 import { CompilerPanel } from './CompilerPanel';
 import { LabsPanel } from './LabsPanel';
 import { SearchModal } from '../search/SearchModal';
+import { ProfileModal } from '../user/ProfileModal';
+import { getUserProfile, hasPromptedProfile, useUserProfile } from '@/lib/userProfile';
 
 function TopBar() {
   const nav = useNav();
@@ -95,6 +97,11 @@ function TopBar() {
           <span className="tnum">{p.streak.days}</span>
           <span className="stat-unit">day{p.streak.days === 1 ? '' : 's'}</span>
         </span>
+        <Link to={{ name: 'users' }} className="top-community" title="Live active learners & community leaderboard">
+          <span className="live-pulse-dot" />
+          <Icon name="users" size={15} />
+          <span>Learners</span>
+        </Link>
         <button className="btn top-labs" onClick={() => setLabs(true)} title="Lab tasks: solve them yourself, then see the dry run">
           <Icon name="flask" />
           <span>Labs</span>
@@ -114,7 +121,46 @@ function TopBar() {
 export function AppShell({ children }: { children: ReactNode }) {
   const nav = useNav();
   const prefs = usePrefs();
+  const p = useProgress();
+  const profile = useUserProfile();
   const routeKey = nav.route.name === 'level' ? nav.route.id : nav.route.name;
+
+  const [promptOpen, setPromptOpen] = useState(false);
+
+  // Show profile prompt once per browser for first-time visitors
+  useEffect(() => {
+    if (!hasPromptedProfile()) {
+      const timer = setTimeout(() => {
+        setPromptOpen(true);
+      }, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Periodic heartbeat reporting user's presence, points, streak to server
+  useEffect(() => {
+    const sendHeartbeat = () => {
+      const prof = getUserProfile();
+      if (!prof) return;
+      const doneCount = Object.values(p.levels).filter((l) => l.done).length;
+      fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: prof.id,
+          name: prof.name,
+          institute: prof.institute,
+          xp: p.xp,
+          streakDays: p.streak.days || 1,
+          levelsDone: doneCount,
+        }),
+      }).catch(() => {});
+    };
+
+    sendHeartbeat();
+    const interval = setInterval(sendHeartbeat, 45000);
+    return () => clearInterval(interval);
+  }, [p.xp, p.streak.days, profile]);
 
   useEffect(() => {
     applyPrefs(prefs);
@@ -134,6 +180,13 @@ export function AppShell({ children }: { children: ReactNode }) {
           {children}
         </main>
       </div>
+      {promptOpen && (
+        <ProfileModal
+          isOpen={promptOpen}
+          isInitialPrompt={true}
+          onClose={() => setPromptOpen(false)}
+        />
+      )}
     </div>
   );
 }
